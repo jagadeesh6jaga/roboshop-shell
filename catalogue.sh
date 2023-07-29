@@ -28,6 +28,6 @@ systemctl restart catalogue
 echo -e '\e[31m>>>>>>>>>>>>>>> install mongo db <<<<<<<<<<<<<<<<<<<<<\e[0m'
 yum install mongodb-org-shell -y &>> {log}
 echo -e '\e[31m>>>>>>>>>>>>>>> copy schema <<<<<<<<<<<<<<<<<<<<<\e[0m'
-mongo --host 172.31.83.27 </app/schema/catalogue.js
+mongo --host mongo.jdevops.online </app/schema/catalogue.js
 
 

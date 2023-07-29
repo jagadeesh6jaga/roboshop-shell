@@ -1,7 +1,7 @@
-log = /tmp/roboshop.log
+log=/tmp/roboshop.log
 
 echo -e "\e{36m  >>>>>>>>>>>>> installing nginx <<<<<<<<<<<\e[0m"
-yum install nginx -y &>>${log}
+yum install nginx -y &>> ${log}
 
 echo -e "\e{36m  >>>>>>>>>>>>> copy roboshop configurations <<<<<<<<<<<\e[0m"
 cp nginx_roboshop.conf /etc/nginx/default.d/roboshop.conf &>> ${log}

@@ -1,32 +1,32 @@
 log=/tmp/roboshop.log
 
 echo -e '\e[31m>>>>>>>>>>>>>>> downloading nodejs <<<<<<<<<<<<<<<<<<<<<\e[0m'
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> ${log}
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 echo -e '\e[31m>>>>>>>>>>>>>>> installing nodejs <<<<<<<<<<<<<<<<<<<<<\e[0m'
-yum install nodejs -y &>> ${log}
+yum install nodejs -y
 echo -e '\e[31m>>>>>>>>>>>>>>> adduser  <<<<<<<<<<<<<<<<<<<<<\e[0m'
-useradd roboshop &>> ${log}
+useradd roboshop
 echo -e '\e[31m>>>>>>>>>>>>>>> copy service file  <<<<<<<<<<<<<<<<<<<<<\e[0m'
-cp catalogue.service  /etc/systemd/system/catalogue.service &>> ${log}
+cp catalogue.service  /etc/systemd/system/catalogue.service
 echo -e '\e[31m>>>>>>>>>>>>>>> copy mongo repo  file  <<<<<<<<<<<<<<<<<<<<<\e[0m'
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>> ${log}
+cp mongo.repo /etc/yum.repos.d/mongo.repo
 echo -e '\e[31m>>>>>>>>>>>>>>> remove app if already exist  <<<<<<<<<<<<<<<<<<<<<\e[0m'
-rm -rf /app &>> ${log}
+rm -rf /app
 echo -e '\e[31m>>>>>>>>>>>>>>> make dir app  <<<<<<<<<<<<<<<<<<<<<\e[0m'
-mkdir /app  &>> ${log}
+mkdir /app 
 echo -e '\e[31m>>>>>>>>>>>>>>> download  app  <<<<<<<<<<<<<<<<<<<<<\e[0m'
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip  &>> ${log}
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip 
 cd /app 
 echo -e '\e[31m>>>>>>>>>>>>>>> unzip the app <<<<<<<<<<<<<<<<<<<<<\e[0m'
-unzip /tmp/catalogue.zip &>> ${log}
+unzip /tmp/catalogue.zip
 echo -e '\e[31m>>>>>>>>>>>>>>> install npm <<<<<<<<<<<<<<<<<<<<<\e[0m'
-npm install  &>> ${log}
+npm install 
 echo -e '\e[31m>>>>>>>>>>>>>>> reload and start <<<<<<<<<<<<<<<<<<<<<\e[0m'
 systemctl daemon-reload
 systemctl enable catalogue 
 systemctl restart catalogue
 echo -e '\e[31m>>>>>>>>>>>>>>> install mongo db <<<<<<<<<<<<<<<<<<<<<\e[0m'
-yum install mongodb-org-shell -y &>> ${log}
+yum install mongodb-org-shell -y
 echo -e '\e[31m>>>>>>>>>>>>>>> copy schema <<<<<<<<<<<<<<<<<<<<<\e[0m'
 mongo --host mongo.jdevops.online </app/schema/catalogue.js
 

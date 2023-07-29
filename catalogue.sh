@@ -1,4 +1,4 @@
-logs=/tmp/roboshop.log
+log=/tmp/roboshop.log
 
 echo -e '\e[31m>>>>>>>>>>>>>>> downloading nodejs <<<<<<<<<<<<<<<<<<<<<\e[0m'
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> ${log}
